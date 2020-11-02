@@ -1,17 +1,4 @@
 # js-terminal
 Simple javascript terminal
 
-<html>
-<link rel="stylesheet" href="terminal.css">
-<head>
-    <script defer src="terminal.js"></script>
-</head>
-
-<body>
-	<span id="terminal">
-	  <span id="out">Simple JS Terminal<br>Terminal V1.0<br></span><br>
-	  <span id="prompt">$ </span><input autofocus="true" id="cmdinput" type="text"  onkeypress="keypress_handle(event, this)" />
-	</span>
-
-</body>
-</html>
+[Live Demo](qawerz.github.io/js-terminal/terminal.html)
