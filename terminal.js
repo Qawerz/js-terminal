@@ -118,3 +118,9 @@ term.commands.push(['time', function () {
     var now = new Date();
     return now;
 }, ' - date and time at this moment'])
+
+term.commands.push(['about',
+ function () {
+	var str_full = '<p>Creator: <a style="color: white" href="https://github.com/Qawerz">Qawerz</a><br>Create date : 2-Oct-2020</p>';
+    return str_full;
+}, ' - some info about creator'])

@@ -1,11 +1,13 @@
 * {
     cursor: default;
     font-family: monospace;
+	font-size: 20px;
 }
 
 body{
 	background-color: black;
 	color: white;
+	
 }
 
 input#cmdinput {
@@ -15,6 +17,7 @@ input#cmdinput {
     width: inherit;
     font-size: 12pt;
 	outline: none;
+	font-size: 20px;
 }
 
 span#terminal{
