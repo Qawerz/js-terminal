@@ -32,6 +32,7 @@ Put this code in to `<body>`
 term.commands.push([
 '(name)',
 function (args){
-  --code--
-},'(discription)'
-])```
+  --code--},
+'(discription)'
+])
+```
