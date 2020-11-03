@@ -26,3 +26,15 @@ Put this code in to `<body>`
 </span>
 ```
 ![screenshot of sample](https://raw.githubusercontent.com/Qawerz/js-terminal/main/cmd.png)
+
+#### New commands
+```js
+term.commands.push(
+[
+'(name)',
+function (args){
+  --code--
+},
+'(discription)'
+]
+)```
