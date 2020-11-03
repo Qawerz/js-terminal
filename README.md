@@ -29,12 +29,9 @@ Put this code in to `<body>`
 
 #### New commands
 ```js
-term.commands.push(
-[
+term.commands.push([
 '(name)',
 function (args){
   --code--
-},
-'(discription)'
-]
-)```
+},'(discription)'
+])```
