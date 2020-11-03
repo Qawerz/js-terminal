@@ -10,6 +10,7 @@ Simple javascript terminal
 * alert
 * time
 * about
+* cls
 
 #### Installation
 Put this code in to `<head>`
