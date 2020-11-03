@@ -8,13 +8,6 @@ term.lk = document.getElementById('link');
 term.in_p = "$ ";
 term.out_p = "> ";
 term.commands = [];
-var prj = [
-  ['Matrix Screensaver PHP', 'https://qawerz.github.io/Matrix.html'],
-  ['School Project 8 class', 'https://qawerz.github.io/412proj/GW.html'],
-  ['Real Time Editor', 'https://qawerz.github.io/RTE.html'],
-]
-
-var err = "<span red>Unknown command. Use help command.</span><br />"
 
 //function
 //execution
@@ -148,43 +141,6 @@ term.commands.push(['time', function () {
     var now = new Date();
     return now;
 }, ' - date and time at this moment'])
-
-term.commands.push(['about',
- function () {
-	var about_str = '<p>Creator: <a style="color: white" href="https://github.com/Qawerz">Qawerz</a><br>Create date : 2-Oct-2020</p>';
-    return about_str;
-}, ' - some info about creator'])
-
-term.commands.push(['ls', function(){
-  var ls_str = '<br><ol>'
-  console.log(...prj + '-prj')
-  console.log(...prj.length + '-prj.lengh')
-
-  for (var i = 0; i < prj.length; i++){ 
-    ls_str += '<li>' + prj[i][0] + '</li>'
-  }
-  ls_str += '</ol>'
-  return ls_str
-},
-" - show list of my projcts"
-])
-
-term.commands.push(['open', function(args){
-  console.log(args)
-  for (var i = 0; i < prj.length; i++){
-      if (args <= prj.length){
-        var win = window.open(prj[args - 1][1], "_self");
-        win.focus();
-        return win
-      }
-
-      if (args === undefined){
-        return "Empty value"
-      }
-        
-    return "<span red>Unknown project <br />";
-  }    
-}, " - open page with one of my projects. List of them - 'ls' command."])
 
 term.commands.push(['cls', function(){},' - clear terminal'
 ])
