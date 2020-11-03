@@ -4,15 +4,22 @@ term.prompt = "$ ";
 term.in = document.getElementById('cmdinput');
 term.out = document.getElementById('out');
 term.pr = document.getElementById('prompt');
+term.lk = document.getElementById('link');
 term.in_p = "$ ";
 term.out_p = "> ";
 term.commands = [];
+var prj = [
+  ['Matrix Screensaver PHP', 'https://qawerz.github.io/Matrix.html'],
+  ['School Project 8 class', 'https://qawerz.github.io/412proj/GW.html'],
+  ['Real Time Editor', 'https://qawerz.github.io/RTE.html'],
+]
+
+var err = "<span red>Unknown command. Use help command.</span><br />"
 
 //function
 //execution
 function results(args){
   for (var i = 0; i < term.commands.length; i++){
-    console.log(i)
     var arg = [];
     var argum = "";
     arg = args.split(' ');
@@ -32,12 +39,23 @@ function results(args){
 
   }
 
-     return "<span red>Unknown command: " + args.split(' ')[0] + "<br />";
+     return "<span red>Unknown command: " + args.split(' ')[0] + ". Use 'help' command</span> <br />";
 }
 
 //keypress event
 function keypress_handle(e, el){
   if (e.keyCode === 13){
+    if (el.value === ""){
+      term.out.innerHTML += term.out_p +"<br/>"+"<br>"
+      el.value = '';
+      return ""
+    }
+    if (el.value === "cls") {
+      term.out.innerHTML = "";
+      el.value = '';
+      return ""
+    }
+    
     term.out.innerHTML += term.in_p + el.value + "<br />" + term.out_p + results(el.value) + "<br/>"+"<br>";
     el.value = '';
   }
@@ -51,41 +69,49 @@ function keypress_handle(e, el){
 
 term.commands.push(['help',  //command name
 	function(){														//
-		var str_full = '<br>';										//
+		var help_str = '<br>';										//
 		for (var i = 0; i < term.commands.length; i++){				//Command function
-		str_full += term.commands[i][0]+term.commands[i][2]+"<br>";	//
+      help_str += term.commands[i][0]+term.commands[i][2]+"<br>";	//
 	}																//
-  return str_full			//return to output
+  return help_str			//return to output
 }, ' - show all commands' //description
 ]);
 
 term.commands.push(['echo',
   function(arg) {
-  var str_full = '';
-  return str_full += arg
-  return str_full;},' - repeat your text']);
+  var echo_str = '';
+  if (arg === undefined){
+    return "Empty value"
+  }
+  return echo_str += arg
+  return echo_str;
+},' - repeat your text']);
 
 
 
 term.commands.push(['color', function (arg) {
-        console.log(arg)
-        console.log(arg.length)
+        if (arg === undefined){
+          return "Empty value"
+        }
         if (arg === "red") {
           term.out.style.color = 'red';
           term.in.style.color = 'red';
           term.pr.style.color = 'red';
+          term.lk.style.color = 'red';
           return "Color is now " + arg;
         }
         if (arg === "white") {
           term.out.style.color = 'white';
           term.in.style.color = 'white';
           term.pr.style.color = 'white';
+          term.lk.style.color = 'white';
           return "Color is now " + arg;
         }
         if (arg === "rainbow") {
             term.out.classList.toggle('rainbow')
             term.in.classList.toggle('rainbow')
             term.pr.classList.toggle('rainbow')
+            term.lk.style.color = 'rainbow';
             return "Color is now " + arg;   
 
         }
@@ -93,6 +119,7 @@ term.commands.push(['color', function (arg) {
             term.out.style.color = 'lime';
             term.in.style.color = 'lime';
             term.pr.style.color = 'lime';
+            term.lk.style.color = 'lime';
             return "Color is now " + arg;
         }
 
@@ -101,10 +128,12 @@ term.commands.push(['color', function (arg) {
                 term.out.style.color = '#' + arg;
                 term.in.style.color = '#' + arg;
                 term.pr.style.color = '#' + arg;
+                term.lk.style.color = '#';
                 return "Color is now " + arg;
             }
 
         }
+        
         else {
           return "<span red>Color is not founded</span>"
         }        }, ' - changing color of the terminal (white, red, lime, rainbow or HEX(without #))']);
@@ -114,6 +143,7 @@ term.commands.push(['alert', function (arg) {
     alert(arg)
     return ""
 }, " - alert in browser"])
+
 term.commands.push(['time', function () {
     var now = new Date();
     return now;
@@ -121,6 +151,40 @@ term.commands.push(['time', function () {
 
 term.commands.push(['about',
  function () {
-	var str_full = '<p>Creator: <a style="color: white" href="https://github.com/Qawerz">Qawerz</a><br>Create date : 2-Oct-2020</p>';
-    return str_full;
+	var about_str = '<p>Creator: <a style="color: white" href="https://github.com/Qawerz">Qawerz</a><br>Create date : 2-Oct-2020</p>';
+    return about_str;
 }, ' - some info about creator'])
+
+term.commands.push(['ls', function(){
+  var ls_str = '<br><ol>'
+  console.log(...prj + '-prj')
+  console.log(...prj.length + '-prj.lengh')
+
+  for (var i = 0; i < prj.length; i++){ 
+    ls_str += '<li>' + prj[i][0] + '</li>'
+  }
+  ls_str += '</ol>'
+  return ls_str
+},
+" - show list of my projcts"
+])
+
+term.commands.push(['open', function(args){
+  console.log(args)
+  for (var i = 0; i < prj.length; i++){
+      if (args <= prj.length){
+        var win = window.open(prj[args - 1][1], "_self");
+        win.focus();
+        return win
+      }
+
+      if (args === undefined){
+        return "Empty value"
+      }
+        
+    return "<span red>Unknown project <br />";
+  }    
+}, " - open page with one of my projects. List of them - 'ls' command."])
+
+term.commands.push(['cls', function(){},' - clear terminal'
+])

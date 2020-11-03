@@ -1,16 +1,32 @@
-
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="terminal.css">
 <head>
-    <script defer src="terminal.js"></script>
+<link rel="stylesheet" href="terminal.css">
+<script defer src="terminal.js"></script>
+<script type="text/javascript">
+function getDate()
+{
+    var date = new Date();
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    //По надобности условие ниже повторить с minutes и hours
+    if(seconds < 10)
+    {
+        seconds = '0' + seconds;
+    }
+    document.getElementById('timedisplay').innerHTML = hours + ':' + minutes + ':' + seconds;
+}
+setInterval(getDate, 0);
+</script>
 </head>
 
 <body>
 	<span id="terminal">
-	  <span id="out">Simple JS Terminal<br>Terminal V1.0<br></span><br>
+	  <span id="out"><a id="link" href="https://github.com/Qawerz">qawerz.github.io</a><br>Terminal V1.0 | <span id="timedisplay"></span><br></span><br>
+	</span> 
 	  <span id="prompt">$ </span><input autofocus="true" id="cmdinput" type="text"  onkeypress="keypress_handle(event, this)" />
-	</span>
+	
 
 </body>
 </html>
