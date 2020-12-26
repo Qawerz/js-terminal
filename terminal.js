@@ -4,7 +4,6 @@ term.prompt = "$ ";
 term.in = document.getElementById('cmdinput');
 term.out = document.getElementById('out');
 term.pr = document.getElementById('prompt');
-term.lk = document.getElementById('link');
 term.in_p = "$ ";
 term.out_p = "> ";
 term.commands = [];
@@ -90,21 +89,18 @@ term.commands.push(['color', function (arg) {
           term.out.style.color = 'red';
           term.in.style.color = 'red';
           term.pr.style.color = 'red';
-          term.lk.style.color = 'red';
           return "Color is now " + arg;
         }
         if (arg === "white") {
           term.out.style.color = 'white';
           term.in.style.color = 'white';
           term.pr.style.color = 'white';
-          term.lk.style.color = 'white';
           return "Color is now " + arg;
         }
         if (arg === "rainbow") {
             term.out.classList.toggle('rainbow')
             term.in.classList.toggle('rainbow')
             term.pr.classList.toggle('rainbow')
-            term.lk.style.color = 'rainbow';
             return "Color is now " + arg;   
 
         }
@@ -112,7 +108,6 @@ term.commands.push(['color', function (arg) {
             term.out.style.color = 'lime';
             term.in.style.color = 'lime';
             term.pr.style.color = 'lime';
-            term.lk.style.color = 'lime';
             return "Color is now " + arg;
         }
 
@@ -121,7 +116,6 @@ term.commands.push(['color', function (arg) {
                 term.out.style.color = '#' + arg;
                 term.in.style.color = '#' + arg;
                 term.pr.style.color = '#' + arg;
-                term.lk.style.color = '#';
                 return "Color is now " + arg;
             }
 
